@@ -90,8 +90,99 @@ ul { list-style: none; }
 }
 .dropdown-menu li a:hover { background: var(--cream); color: var(--gold); }
 
-.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer;
+  padding: 8px; border-radius: 6px;
+  transition: var(--transition);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  z-index: 1000;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--white); border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── WHATSAPP FLOATING BUTTON ── */
+#whatsapp-float {
+  position: fixed; bottom: 88px; right: 20px;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; color: white;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4);
+  z-index: 990; transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+#whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+
+/* ── BACK TO TOP BUTTON ── */
+#back-to-top {
+  position: fixed; bottom: 148px; right: 20px;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  border: 2px solid rgba(184,150,46,.4);
+  font-size: 1.3rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 989;
+}
+#back-to-top.visible { opacity: 1; pointer-events: auto; }
+#back-to-top:hover { background: var(--gold); transform: translateY(-2px); }
+
+/* ── MOBILE STICKY CALL BAR ── */
+#mobile-call-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--navy); border-top: 1px solid rgba(184,150,46,.3);
+  display: none; z-index: 995;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 680px) {
+  #mobile-call-bar { display: flex; }
+  body { padding-bottom: 58px; }
+  #whatsapp-float { bottom: 72px; }
+  #back-to-top { bottom: 130px; }
+}
+.mcb-btn {
+  flex: 1; padding: 12px 8px; text-align: center;
+  font-size: .82rem; font-weight: 700; color: white;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 3px; text-decoration: none; transition: background 0.2s;
+  border-right: 1px solid rgba(255,255,255,.1);
+  touch-action: manipulation;
+}
+.mcb-btn:last-child { border-right: none; }
+.mcb-call    { background: #1e40af; }
+.mcb-call:active { background: #1e3a8a; }
+.mcb-wa      { background: #16a34a; }
+.mcb-wa:active { background: #15803d; }
+.mcb-enquire { background: var(--gold); color: var(--navy); }
+.mcb-enquire:active { background: var(--gold-lt); }
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--gold); width: 0%; z-index: 9999;
+  transition: width 0.4s ease, opacity 0.3s ease;
+}
+
+/* ── SCROLL FADE ANIMATIONS ── */
+.fade-up {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.slide-up {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.slide-up.revealed { opacity: 1; transform: translateY(0); }
 
 /* ======= HERO ======= */
 .hero {
@@ -467,6 +558,7 @@ ul { list-style: none; }
 @media (max-width: 680px) {
 
   /* --- NAVBAR --- */
+  .hamburger { display: flex; }
   .nav-links {
     display: none;
     flex-direction: column;
@@ -627,3 +719,145 @@ ul { list-style: none; }
   .container { padding: 0 14px; }
   .footer-grid { gap: 24px; }
 }
+
+/* ======= UX ENHANCEMENTS ======= */
+
+/* Skip link (accessibility) */
+.skip-link {
+  position: absolute; top: -100px; left: 16px; z-index: 9999;
+  background: var(--gold); color: var(--white);
+  padding: 10px 20px; border-radius: 0 0 8px 8px;
+  font-weight: 700; font-size: .9rem;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
+/* Page load progress bar */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 30%;
+  background: var(--gold); z-index: 9999;
+  transition: width 1.2s ease, opacity .4s ease;
+}
+
+/* Focus visible (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Hamburger open → X animation */
+.hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger span { transition: transform .25s ease, opacity .2s ease; }
+
+/* Back to top button */
+#back-to-top {
+  position: fixed; bottom: 88px; right: 20px; z-index: 900;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  border: 2px solid var(--gold); font-size: 1.3rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .3s, transform .3s, background .2s;
+  pointer-events: none;
+}
+#back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#back-to-top:hover { background: var(--gold); }
+
+/* WhatsApp float button */
+#whatsapp-float {
+  position: fixed; bottom: 88px; left: 20px; z-index: 900;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.45);
+  transition: transform .25s, box-shadow .25s;
+}
+#whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,.55); }
+@media (max-width: 680px) {
+  #whatsapp-float { bottom: 72px; width: 48px; height: 48px; }
+  #back-to-top    { bottom: 72px; right: 16px; }
+}
+
+/* Mobile sticky call bar */
+#mobile-call-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 950;
+  display: flex; height: 56px;
+  box-shadow: 0 -2px 12px rgba(0,0,0,.15);
+}
+.mcb-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 6px; font-weight: 700; font-size: .85rem;
+  text-decoration: none; transition: filter .2s;
+}
+.mcb-btn:hover { filter: brightness(1.1); }
+.mcb-call    { background: var(--navy); color: var(--white); }
+.mcb-wa      { background: #25D366;    color: var(--white); }
+.mcb-enquire { background: var(--gold); color: var(--white); }
+
+/* Scroll fade-up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* Section slide-up reveal */
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.slide-up.revealed { opacity: 1; transform: translateY(0); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .slide-up { transition: none; opacity: 1; transform: none; }
+  .hero-card { animation: none; }
+}
+
+/* Image loading skeleton */
+img { background: var(--light); }
+
+/* Smooth page entrance */
+body { animation: pageIn .35s ease both; }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Better link tap targets on mobile */
+@media (max-width: 680px) {
+  .footer-links a { padding: 6px 0; display: inline-block; }
+  .nav-links > li > a { min-height: 48px; display: flex; align-items: center; }
+  .service-card, .value-card { -webkit-tap-highlight-color: transparent; }
+}
+
+/* Table horizontal scroll on mobile */
+@media (max-width: 680px) {
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+/* Prevent font size inflate on iOS */
+html { -webkit-text-size-adjust: 100%; }
+
+/* Better button touch feedback */
+.btn-primary:active, .btn-outline:active,
+.btn-secondary:active, .btn-outline-white:active {
+  transform: scale(0.97);
+}
+
+/* CA Logo image in navbar/footer */
+.ca-logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+  border-radius: 4px;
+  object-fit: contain;
+}
+@media (max-width: 680px) { .ca-logo-img { height: 42px; } }
+@media (max-width: 400px) { .ca-logo-img { height: 36px; } }
