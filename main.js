@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── 7. CONTACT FORM — delivers via WhatsApp + Formspree ── */
+  /* ── 7. CONTACT FORM — delivers via Email (mailto) + WhatsApp ── */
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
 
@@ -157,70 +157,63 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       /* --- Collect data --- */
-      var name    = (nameEl    ? nameEl.value.trim()    : '');
-      var phone   = (phoneEl   ? phoneEl.value.trim()   : '');
-      var email   = (document.getElementById('email')   ? document.getElementById('email').value.trim()   : '');
-      var service = (serviceEl ? serviceEl.value.trim() : '');
-      var city    = (document.getElementById('city')    ? document.getElementById('city').value.trim()    : '');
-      var message = (document.getElementById('message') ? document.getElementById('message').value.trim() : '');
+      var name    = nameEl    ? nameEl.value.trim()    : '';
+      var phone   = phoneEl   ? phoneEl.value.trim()   : '';
+      var emailEl = document.getElementById('email');
+      var email   = emailEl   ? emailEl.value.trim()   : '';
+      var service = serviceEl ? serviceEl.value.trim() : '';
+      var cityEl  = document.getElementById('city');
+      var city    = cityEl    ? cityEl.value.trim()    : '';
+      var msgEl   = document.getElementById('message');
+      var message = msgEl     ? msgEl.value.trim()     : '';
 
       var btn = contactForm.querySelector('.form-submit');
       btn.textContent = 'Sending…';
       btn.disabled    = true;
 
-      /* ---- Send via Formspree (email delivery) ---- */
-      var formData = new FormData();
-      formData.append('name',    name);
-      formData.append('phone',   phone);
-      formData.append('email',   email);
-      formData.append('service', service);
-      formData.append('city',    city);
-      formData.append('message', message);
-      formData.append('_replyto', email);
-      formData.append('_subject', 'New Enquiry from ' + name + ' — AUA & Associates Website');
+      /* ---- BUILD EMAIL BODY ---- */
+      var subject = encodeURIComponent('New Enquiry from ' + name + ' — AUA & Associates Website');
+      var body    = encodeURIComponent(
+        'New Client Enquiry from AUA & Associates Website\n' +
+        '=================================================\n\n' +
+        'Name    : ' + name    + '\n' +
+        'Phone   : ' + phone   + '\n' +
+        'Email   : ' + (email   || 'Not provided') + '\n' +
+        'Service : ' + service  + '\n' +
+        'City    : ' + (city    || 'Not provided') + '\n\n' +
+        'Message :\n' + (message || 'No message') + '\n\n' +
+        '=================================================\n' +
+        'Sent from auaandassociates.github.io'
+      );
 
-      fetch('https://formspree.io/f/xpwzgvqk', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(function (res) {
-        if (res.ok) {
-          showSuccess(btn);
-        } else {
-          /* Fallback: open WhatsApp with filled details */
-          sendWhatsApp(name, phone, service, city, message);
-          showSuccess(btn);
-        }
-      })
-      .catch(function () {
-        /* Network error fallback: open WhatsApp */
-        sendWhatsApp(name, phone, service, city, message);
-        showSuccess(btn);
-      });
+      /* ---- PRIMARY: Open Gmail compose with full details ---- */
+      var mailtoLink = 'mailto:auaandassociatestricity@gmail.com' +
+                       '?subject=' + subject +
+                       '&body='    + body;
+      window.location.href = mailtoLink;
 
+      /* ---- SECONDARY: Also send via WhatsApp (after short delay) ---- */
+      setTimeout(function () {
+        var waText = 'Hello AUA %26 Associates,%0A%0A' +
+          '*New Website Enquiry*%0A' +
+          'Name: ' + encodeURIComponent(name) + '%0A' +
+          'Phone: ' + encodeURIComponent(phone) + '%0A' +
+          'Service: ' + encodeURIComponent(service) +
+          (city    ? '%0ACity: '    + encodeURIComponent(city)    : '') +
+          (message ? '%0AMessage: ' + encodeURIComponent(message) : '');
+        window.open('https://wa.me/916283153211?text=' + waText, '_blank');
+      }, 1500);
+
+      /* ---- Show success ---- */
       contactForm.reset();
+      btn.textContent      = '✓ Enquiry sent! Check your email app and WhatsApp.';
+      btn.style.background = '#16a34a';
+      btn.disabled         = false;
+      setTimeout(function () {
+        btn.textContent      = 'Send Enquiry';
+        btn.style.background = '';
+      }, 8000);
     });
-  }
-
-  function sendWhatsApp(name, phone, service, city, message) {
-    var text = 'Hello AUA & Associates,' +
-      '%0AName: ' + encodeURIComponent(name) +
-      '%0APhone: ' + encodeURIComponent(phone) +
-      '%0AService: ' + encodeURIComponent(service) +
-      (city    ? '%0ACity: '    + encodeURIComponent(city)    : '') +
-      (message ? '%0AMessage: ' + encodeURIComponent(message) : '');
-    window.open('https://wa.me/916283153211?text=' + text, '_blank');
-  }
-
-  function showSuccess(btn) {
-    btn.textContent      = '✓ Enquiry sent! We will contact you shortly.';
-    btn.style.background = '#16a34a';
-    btn.disabled         = false;
-    setTimeout(function () {
-      btn.textContent      = 'Send Enquiry';
-      btn.style.background = '';
-    }, 6000);
   }
 
   /* ── 8. SCROLL FADE-IN ANIMATIONS ── */

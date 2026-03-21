@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#0D1F3C"/>
+  <!-- C letter -->
+  <path d="M32,14 A17,17 0 1,0 32,50 L32,44 A11,11 0 1,1 32,20 Z" fill="#2B5EA7"/>
+  <!-- A letter left leg -->
+  <polygon points="30,14 22,50 28,50 32,24" fill="#2B5EA7"/>
+  <!-- A letter right leg -->
+  <polygon points="32,24 38,50 44,50 34,14" fill="#2B5EA7"/>
+  <!-- Saffron swoosh -->
+  <polygon points="28,32 34,26 46,30 42,34" fill="#FF9933"/>
+  <!-- Green swoosh -->
+  <polygon points="29,38 35,32 47,36 43,41" fill="#2E8B2E"/>
+  <!-- Right leg redraw on top -->
+  <polygon points="34,26 44,50 38,50 32,35" fill="#2B5EA7"/>
+</svg>
