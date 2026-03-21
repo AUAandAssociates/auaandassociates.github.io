@@ -171,42 +171,41 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.textContent = 'Sending…';
       btn.disabled    = true;
 
-      /* ---- BUILD EMAIL BODY ---- */
+      /* ---- PRIMARY: WhatsApp — opens instantly, 100% reliable ---- */
+      var waText =
+        'Hello AUA %26 Associates,%0A%0A' +
+        '*New Enquiry from Website*%0A' +
+        '-----------------------------%0A' +
+        'Name%20%20%20%20: ' + encodeURIComponent(name)    + '%0A' +
+        'Phone%20%20%20 : ' + encodeURIComponent(phone)   + '%0A' +
+        'Email%20%20%20 : ' + encodeURIComponent(email   || 'Not provided') + '%0A' +
+        'Service%20  : ' + encodeURIComponent(service)  + '%0A' +
+        'City%20%20%20%20 : ' + encodeURIComponent(city    || 'Not provided') + '%0A%0A' +
+        'Message%20 : ' + encodeURIComponent(message  || 'No message');
+      window.open('https://wa.me/916283153211?text=' + waText, '_blank');
+
+      /* ---- SECONDARY: mailto — opens email app as backup ---- */
       var subject = encodeURIComponent('New Enquiry from ' + name + ' — AUA & Associates Website');
       var body    = encodeURIComponent(
-        'New Client Enquiry from AUA & Associates Website\n' +
-        '=================================================\n\n' +
-        'Name    : ' + name    + '\n' +
-        'Phone   : ' + phone   + '\n' +
+        'New Enquiry from AUA & Associates Website\n' +
+        '==========================================\n\n' +
+        'Name    : ' + name                   + '\n' +
+        'Phone   : ' + phone                  + '\n' +
         'Email   : ' + (email   || 'Not provided') + '\n' +
-        'Service : ' + service  + '\n' +
+        'Service : ' + service                + '\n' +
         'City    : ' + (city    || 'Not provided') + '\n\n' +
-        'Message :\n' + (message || 'No message') + '\n\n' +
-        '=================================================\n' +
+        'Message :\n' + (message || 'No message')  + '\n\n' +
+        '==========================================\n' +
         'Sent from auaandassociates.github.io'
       );
-
-      /* ---- PRIMARY: Open Gmail compose with full details ---- */
-      var mailtoLink = 'mailto:auaandassociatestricity@gmail.com' +
-                       '?subject=' + subject +
-                       '&body='    + body;
-      window.location.href = mailtoLink;
-
-      /* ---- SECONDARY: Also send via WhatsApp (after short delay) ---- */
       setTimeout(function () {
-        var waText = 'Hello AUA %26 Associates,%0A%0A' +
-          '*New Website Enquiry*%0A' +
-          'Name: ' + encodeURIComponent(name) + '%0A' +
-          'Phone: ' + encodeURIComponent(phone) + '%0A' +
-          'Service: ' + encodeURIComponent(service) +
-          (city    ? '%0ACity: '    + encodeURIComponent(city)    : '') +
-          (message ? '%0AMessage: ' + encodeURIComponent(message) : '');
-        window.open('https://wa.me/916283153211?text=' + waText, '_blank');
-      }, 1500);
+        window.location.href = 'mailto:auaandassociatestricity@gmail.com' +
+                               '?subject=' + subject + '&body=' + body;
+      }, 1800);
 
       /* ---- Show success ---- */
       contactForm.reset();
-      btn.textContent      = '✓ Enquiry sent! Check your email app and WhatsApp.';
+      btn.textContent      = '✓ Sent! WhatsApp & Email both opened.';
       btn.style.background = '#16a34a';
       btn.disabled         = false;
       setTimeout(function () {
