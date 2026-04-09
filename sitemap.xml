@@ -1,84 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://auaandassociates.github.io/</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://auaandassociates.co.in/</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/about.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/about.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/services.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/services.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/gst-tax.html</loc>
-    <lastmod>2025-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://auaandassociates.github.io/audit.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/gst-tax.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/company-registration.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/audit.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/financial-advisory.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/company-registration.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/virtual-cfo.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/financial-advisory.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/team.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/virtual-cfo.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://auaandassociates.co.in/team.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/offices.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/offices.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://auaandassociates.github.io/contact.html</loc>
-    <lastmod>2025-01-01</lastmod>
+    <loc>https://auaandassociates.co.in/contact.html</loc>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
