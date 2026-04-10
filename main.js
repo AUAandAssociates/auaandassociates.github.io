@@ -1,6 +1,8 @@
 /* ================================================
-   AUA & Associates — main.js  v3.0
-   Hamburger | Form | WA | Animations | UX
+   AUA & Associates — main.js  v4.0
+   auaandassociates.co.in
+   Hamburger | Form | Animations | UX
+   Class-based global init — works on ALL pages
    ================================================ */
 (function () {
   'use strict';
@@ -9,12 +11,16 @@
   var $ = function (sel) { return document.querySelector(sel); };
   var $$ = function (sel) { return Array.from(document.querySelectorAll(sel)); };
 
+  /* ════════════════════════════════════════════════
+     INIT — runs immediately on DOMContentLoaded
+     Works regardless of page or directory depth
+  ════════════════════════════════════════════════ */
   document.addEventListener('DOMContentLoaded', function () {
 
     /* ════════════════════════════════
        1. NAVBAR SCROLL SHADOW
     ════════════════════════════════ */
-    var navbar = $('#navbar');
+    var navbar = $('.nav-primary');
     function onScroll() {
       if (!navbar) return;
       navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -23,13 +29,12 @@
     onScroll();
 
     /* ════════════════════════════════
-       2. HAMBURGER — bulletproof
-       Root cause was z-index + iOS
-       touch-action conflicts.
-       We use touchstart + click both.
+       2. HAMBURGER — Class-based
+       Delegated to document so it
+       initialises on EVERY page load.
     ════════════════════════════════ */
-    var hamburger = $('#hamburger');
-    var navLinks  = $('#navLinks');
+    var hamburger = $('.nav-hamburger');
+    var navLinks  = $('.nav-menu');
     var menuOpen  = false;
 
     function openMenu() {
@@ -56,37 +61,38 @@
       menuOpen ? closeMenu() : openMenu();
     }
 
-    if (hamburger) {
-      hamburger.addEventListener('click',      toggleMenu);
-      hamburger.addEventListener('touchstart', toggleMenu, { passive: false });
-    }
-
-    /* Close on nav link tap */
-    if (navLinks) {
-      $$('#navLinks a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (window.innerWidth < 900) closeMenu();
-        });
-      });
-    }
-
-    /* Close on outside tap */
+    /* Delegate to document — catches ALL pages */
     document.addEventListener('click', function (e) {
-      if (!menuOpen) return;
-      if (hamburger && hamburger.contains(e.target)) return;
-      if (navLinks  && navLinks.contains(e.target))  return;
-      closeMenu();
+      var btn = e.target.closest('.nav-hamburger');
+      if (btn) { toggleMenu(e); return; }
+      /* Close on outside click */
+      if (menuOpen && !e.target.closest('.nav-menu') && !e.target.closest('.nav-hamburger')) {
+        closeMenu();
+      }
+    });
+
+    /* Also handle touchstart for iOS */
+    document.addEventListener('touchstart', function (e) {
+      var btn = e.target.closest('.nav-hamburger');
+      if (btn) { toggleMenu(e); }
+    }, { passive: false });
+
+    /* Close on nav link tap (mobile) */
+    $$('.nav-menu a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.innerWidth < 900) closeMenu();
+      });
     });
 
     /* Mobile Services dropdown accordion */
-    $$('.dropdown > a').forEach(function (el) {
+    $$('.nav-dropdown > a').forEach(function (el) {
       el.addEventListener('click', function (e) {
         if (window.innerWidth >= 900) return;
         e.preventDefault();
         e.stopPropagation();
         var parent  = el.parentElement;
         var wasOpen = parent.classList.contains('open');
-        $$('.dropdown').forEach(function (d) { d.classList.remove('open'); });
+        $$('.nav-dropdown').forEach(function (d) { d.classList.remove('open'); });
         if (!wasOpen) parent.classList.add('open');
       });
     });
@@ -100,7 +106,7 @@
        3. ACTIVE NAV HIGHLIGHT
     ════════════════════════════════ */
     var page = window.location.pathname.split('/').pop() || 'index.html';
-    $$('.nav-links > li > a').forEach(function (a) {
+    $$('.nav-menu > li > a').forEach(function (a) {
       var href = a.getAttribute('href') || '';
       a.classList.toggle('active', href === page || (page === '' && href === 'index.html'));
     });
@@ -191,24 +197,28 @@
         var email   = $('#email')   ? $('#email').value.trim()   : '';
         var city    = $('#city')    ? $('#city').value.trim()    : '';
         var message = $('#message') ? $('#message').value.trim() : '';
+        var office  = $('#office')  ? $('#office').value.trim()  : 'Chandigarh';
 
         var btn = form.querySelector('.form-submit');
         btn.disabled    = true;
         btn.textContent = 'Sending…';
 
-        /* WhatsApp — primary */
-        var wa = 'Hello AUA %26 Associates,%0A%0A' +
-          '*New Website Enquiry*%0A' +
-          '------------------------------%0A' +
-          'Name    : ' + encodeURIComponent(name)    + '%0A' +
-          'Phone   : ' + encodeURIComponent(phone)   + '%0A' +
-          'Email   : ' + encodeURIComponent(email   || 'Not provided') + '%0A' +
-          'Service : ' + encodeURIComponent(service)  + '%0A' +
-          'City    : ' + encodeURIComponent(city    || 'Not provided') + '%0A%0A' +
-          'Message : ' + encodeURIComponent(message  || 'No message');
-        window.open('https://wa.me/916283153211?text=' + wa, '_blank');
+        /* Route to correct WhatsApp number based on office */
+        var waNum = (office === 'Bareilly') ? '918938825555' : '916283153211';
 
-        /* mailto — secondary (1.8s delay) */
+        var wa = 'Hello%20AUA%20%26%20Associates%2C%0A%0A' +
+          '*New%20Website%20Enquiry*%0A' +
+          '--------------------------------%0A' +
+          'Name%20%20%20%20%3A%20' + encodeURIComponent(name)    + '%0A' +
+          'Phone%20%20%20%3A%20'   + encodeURIComponent(phone)   + '%0A' +
+          'Email%20%20%20%3A%20'   + encodeURIComponent(email   || 'Not provided') + '%0A' +
+          'Service%20%3A%20'       + encodeURIComponent(service)  + '%0A' +
+          'City%20%20%20%20%3A%20' + encodeURIComponent(city    || 'Not provided') + '%0A' +
+          'Office%20%20%3A%20'     + encodeURIComponent(office)   + '%0A%0A' +
+          'Message%20%3A%20'       + encodeURIComponent(message  || 'No message');
+        window.open('https://wa.me/' + waNum + '?text=' + wa, '_blank');
+
+        /* mailto — secondary */
         var subj = encodeURIComponent('Enquiry from ' + name + ' — AUA & Associates');
         var body = encodeURIComponent(
           'New Enquiry — AUA & Associates Website\n' +
@@ -217,13 +227,15 @@
           'Phone   : ' + phone                      + '\n' +
           'Email   : ' + (email   || 'Not provided') + '\n' +
           'Service : ' + service                    + '\n' +
-          'City    : ' + (city    || 'Not provided') + '\n\n' +
+          'City    : ' + (city    || 'Not provided') + '\n' +
+          'Office  : ' + office                     + '\n\n' +
           'Message :\n' + (message || 'No message')  + '\n\n' +
           '========================================\n' +
-          'Source: auaandassociates.github.io'
+          'Source: auaandassociates.co.in'
         );
+        var mailTo = (office === 'Bareilly') ? 'auaandassociates.up@gmail.com' : 'auaandassociatestricity@gmail.com';
         setTimeout(function () {
-          window.location.href = 'mailto:auaandassociatestricity@gmail.com?subject=' + subj + '&body=' + body;
+          window.location.href = 'mailto:' + mailTo + '?subject=' + subj + '&body=' + body;
         }, 1800);
 
         form.reset();

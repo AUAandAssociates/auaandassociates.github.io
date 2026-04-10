@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://auaandassociates.github.io/sitemap.xml
+Sitemap: https://auaandassociates.co.in/sitemap.xml
