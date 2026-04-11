@@ -1,26 +1,22 @@
 /* ================================================
-   AUA & Associates — main.js  v4.0
+   AUA & Associates — main.js  v4.1
    auaandassociates.co.in
    Hamburger | Form | Animations | UX
    Class-based global init — works on ALL pages
+   FIXED: double-toggle bug (touchstart + click)
    ================================================ */
 (function () {
   'use strict';
 
-  /* ── helpers ── */
   var $ = function (sel) { return document.querySelector(sel); };
   var $$ = function (sel) { return Array.from(document.querySelectorAll(sel)); };
 
-  /* ════════════════════════════════════════════════
-     INIT — runs immediately on DOMContentLoaded
-     Works regardless of page or directory depth
-  ════════════════════════════════════════════════ */
   document.addEventListener('DOMContentLoaded', function () {
 
     /* ════════════════════════════════
        1. NAVBAR SCROLL SHADOW
     ════════════════════════════════ */
-    var navbar = $('.nav-primary');
+    var navbar = $('.nav-primary') || $('#navbar');
     function onScroll() {
       if (!navbar) return;
       navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -29,55 +25,57 @@
     onScroll();
 
     /* ════════════════════════════════
-       2. HAMBURGER — Class-based
-       Delegated to document so it
-       initialises on EVERY page load.
+       2. HAMBURGER — bulletproof
+       Uses a touchHandled flag to
+       prevent the ghost click that
+       fires after touchstart on iOS/Android,
+       which was causing double-toggle.
     ════════════════════════════════ */
     var hamburger = $('.nav-hamburger');
-    var navLinks  = $('.nav-menu');
+    var navMenu   = $('.nav-menu');
     var menuOpen  = false;
+    var touchHandled = false; /* prevents ghost click after touch */
 
     function openMenu() {
-      if (!hamburger || !navLinks) return;
+      if (!hamburger || !navMenu) return;
       menuOpen = true;
-      navLinks.classList.add('open');
+      navMenu.classList.add('open');
       hamburger.classList.add('is-open');
       hamburger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
-      if (!hamburger || !navLinks) return;
+      if (!hamburger || !navMenu) return;
       menuOpen = false;
-      navLinks.classList.remove('open');
+      navMenu.classList.remove('open');
       hamburger.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
-    function toggleMenu(e) {
-      e.preventDefault();
-      e.stopPropagation();
+    /* touchstart on hamburger → toggle, set flag to block ghost click */
+    document.addEventListener('touchstart', function (e) {
+      if (!e.target.closest('.nav-hamburger')) return;
+      e.preventDefault(); /* stop ghost click */
+      touchHandled = true;
       menuOpen ? closeMenu() : openMenu();
-    }
+    }, { passive: false });
 
-    /* Delegate to document — catches ALL pages */
+    /* click on hamburger → only runs if NOT already handled by touch */
     document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.nav-hamburger');
-      if (btn) { toggleMenu(e); return; }
+      if (e.target.closest('.nav-hamburger')) {
+        if (touchHandled) { touchHandled = false; return; } /* skip ghost click */
+        menuOpen ? closeMenu() : openMenu();
+        return;
+      }
       /* Close on outside click */
-      if (menuOpen && !e.target.closest('.nav-menu') && !e.target.closest('.nav-hamburger')) {
+      if (menuOpen && !e.target.closest('.nav-menu')) {
         closeMenu();
       }
     });
 
-    /* Also handle touchstart for iOS */
-    document.addEventListener('touchstart', function (e) {
-      var btn = e.target.closest('.nav-hamburger');
-      if (btn) { toggleMenu(e); }
-    }, { passive: false });
-
-    /* Close on nav link tap (mobile) */
+    /* Close nav links on tap (mobile) */
     $$('.nav-menu a').forEach(function (link) {
       link.addEventListener('click', function () {
         if (window.innerWidth < 900) closeMenu();
@@ -161,14 +159,16 @@
        7. CONTACT FORM
        Primary  → WhatsApp (instant)
        Secondary → mailto  (backup)
+       Routes to correct office based
+       on 'office' select field
     ════════════════════════════════ */
     var form = $('#contactForm');
     if (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        var fields  = { name: $('#name'), phone: $('#phone'), service: $('#service') };
-        var valid   = true;
+        var fields = { name: $('#name'), phone: $('#phone'), service: $('#service') };
+        var valid  = true;
 
         Object.values(fields).forEach(function (el) {
           if (!el) return;
@@ -191,9 +191,9 @@
           return;
         }
 
-        var name    = fields.name    ? fields.name.value.trim()    : '';
-        var phone   = fields.phone   ? fields.phone.value.trim()   : '';
-        var service = fields.service ? fields.service.value.trim() : '';
+        var name    = fields.name.value.trim();
+        var phone   = fields.phone.value.trim();
+        var service = fields.service.value.trim();
         var email   = $('#email')   ? $('#email').value.trim()   : '';
         var city    = $('#city')    ? $('#city').value.trim()    : '';
         var message = $('#message') ? $('#message').value.trim() : '';
@@ -203,43 +203,34 @@
         btn.disabled    = true;
         btn.textContent = 'Sending…';
 
-        /* Route to correct WhatsApp number based on office */
-        var waNum = (office === 'Bareilly') ? '918938825555' : '916283153211';
+        var waNum  = (office === 'Bareilly') ? '918938825555' : '916283153211';
+        var mailTo = (office === 'Bareilly') ? 'auaandassociates.up@gmail.com' : 'auaandassociatestricity@gmail.com';
 
         var wa = 'Hello%20AUA%20%26%20Associates%2C%0A%0A' +
           '*New%20Website%20Enquiry*%0A' +
-          '--------------------------------%0A' +
-          'Name%20%20%20%20%3A%20' + encodeURIComponent(name)    + '%0A' +
-          'Phone%20%20%20%3A%20'   + encodeURIComponent(phone)   + '%0A' +
-          'Email%20%20%20%3A%20'   + encodeURIComponent(email   || 'Not provided') + '%0A' +
-          'Service%20%3A%20'       + encodeURIComponent(service)  + '%0A' +
-          'City%20%20%20%20%3A%20' + encodeURIComponent(city    || 'Not provided') + '%0A' +
-          'Office%20%20%3A%20'     + encodeURIComponent(office)   + '%0A%0A' +
-          'Message%20%3A%20'       + encodeURIComponent(message  || 'No message');
+          'Name%20%20%20%20%3A%20'   + encodeURIComponent(name)                   + '%0A' +
+          'Phone%20%20%20%3A%20'     + encodeURIComponent(phone)                  + '%0A' +
+          'Email%20%20%20%3A%20'     + encodeURIComponent(email   || 'Not given')  + '%0A' +
+          'Service%20%3A%20'         + encodeURIComponent(service)                 + '%0A' +
+          'City%20%20%20%20%3A%20'   + encodeURIComponent(city    || 'Not given')  + '%0A' +
+          'Office%20%20%3A%20'       + encodeURIComponent(office)                  + '%0A%0A' +
+          'Message%20%3A%20'         + encodeURIComponent(message  || 'None');
         window.open('https://wa.me/' + waNum + '?text=' + wa, '_blank');
 
-        /* mailto — secondary */
         var subj = encodeURIComponent('Enquiry from ' + name + ' — AUA & Associates');
         var body = encodeURIComponent(
-          'New Enquiry — AUA & Associates Website\n' +
-          '========================================\n\n' +
-          'Name    : ' + name                       + '\n' +
-          'Phone   : ' + phone                      + '\n' +
-          'Email   : ' + (email   || 'Not provided') + '\n' +
-          'Service : ' + service                    + '\n' +
-          'City    : ' + (city    || 'Not provided') + '\n' +
-          'Office  : ' + office                     + '\n\n' +
-          'Message :\n' + (message || 'No message')  + '\n\n' +
-          '========================================\n' +
-          'Source: auaandassociates.co.in'
+          'New Enquiry\n========================================\n' +
+          'Name    : ' + name    + '\nPhone   : ' + phone   + '\n' +
+          'Email   : ' + (email   || 'Not given') + '\nService : ' + service + '\n' +
+          'City    : ' + (city    || 'Not given') + '\nOffice  : ' + office  + '\n\n' +
+          'Message :\n' + (message || 'None') + '\n\nSource: auaandassociates.co.in'
         );
-        var mailTo = (office === 'Bareilly') ? 'auaandassociates.up@gmail.com' : 'auaandassociatestricity@gmail.com';
         setTimeout(function () {
           window.location.href = 'mailto:' + mailTo + '?subject=' + subj + '&body=' + body;
         }, 1800);
 
         form.reset();
-        btn.textContent      = '✓ Sent! WhatsApp & Email opened.';
+        btn.textContent      = '✓ Message sent! WhatsApp opened.';
         btn.style.background = '#16a34a';
         btn.disabled         = false;
         setTimeout(function () {
@@ -255,14 +246,11 @@
     if ('IntersectionObserver' in window) {
       var fadeObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            en.target.classList.add('visible');
-            fadeObs.unobserve(en.target);
-          }
+          if (en.isIntersecting) { en.target.classList.add('visible'); fadeObs.unobserve(en.target); }
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
 
-      $$('.service-card,.value-card,.team-card,.why-box,.process-step,.faq-item,.contact-item,.info-card,.pricing-card,.footer-links,.office-card')
+      $$('.service-card,.value-card,.team-card,.why-box,.process-step,.faq-item,.contact-item,.info-card,.pricing-card,.footer-links,.office-card,.city-chip')
         .forEach(function (el, i) {
           el.classList.add('fade-up');
           el.style.transitionDelay = (i % 5) * 60 + 'ms';
@@ -271,18 +259,12 @@
 
       var secObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            en.target.classList.add('revealed');
-            secObs.unobserve(en.target);
-          }
+          if (en.isIntersecting) { en.target.classList.add('revealed'); secObs.unobserve(en.target); }
         });
       }, { threshold: 0.05 });
 
       $$('.section-header,.why-content,.content-text,.contact-info')
-        .forEach(function (el) {
-          el.classList.add('slide-up');
-          secObs.observe(el);
-        });
+        .forEach(function (el) { el.classList.add('slide-up'); secObs.observe(el); });
     }
 
   }); /* end DOMContentLoaded */
