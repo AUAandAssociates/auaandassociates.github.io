@@ -412,8 +412,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 #back-to-top:hover { background: var(--gold); }
 
-#whatsapp-float { position: fixed; bottom: 88px; left: 20px; z-index: 900; width: 54px; height: 54px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.5); transition: transform .25s, box-shadow .25s; text-decoration: none; overflow: hidden; }
-#whatsapp-float svg { width: 54px; height: 54px; display: block; }
+#whatsapp-float { position: fixed; bottom: 88px; left: 20px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,.5); transition: transform .25s, box-shadow .25s; text-decoration: none; overflow: hidden; }
+#whatsapp-float svg { width: 32px; height: 32px; display: block; flex-shrink: 0; }
 #whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
 
 #mobile-call-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 950; display: flex; height: 56px; box-shadow: 0 -2px 12px rgba(0,0,0,.15); }
@@ -521,7 +521,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .cta-actions a { width: 100%; max-width: 320px; text-align: center; }
   .cities-grid { grid-template-columns: repeat(2, 1fr); }
   #whatsapp-float { bottom: 72px; left: 12px; width: 50px; height: 50px; }
-  #whatsapp-float svg { width: 50px; height: 50px; }
+  #whatsapp-float svg { width: 28px; height: 28px; }
   .footer-links a { padding: 6px 0; display: inline-block; }
   .nav-menu > li > a, .nav-links > li > a { min-height: 48px; display: flex; align-items: center; }
   .ca-logo-img { height: 42px; }
