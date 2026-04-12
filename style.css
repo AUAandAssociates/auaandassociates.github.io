@@ -543,3 +543,38 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .footer-grid { gap: 24px; }
   .cities-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* ═══════════════════════════════════════════
+   PATCH: Delhi NCR footer badge + 3-col grid
+   ═══════════════════════════════════════════ */
+.fo-badge--soon {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+}
+
+.footer-offices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* FAQ button reset (accessibility fix) */
+.faq-q {
+  all: unset;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.faq-q:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}

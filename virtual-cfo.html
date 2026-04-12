@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="shortcut icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -23,7 +31,7 @@
 <meta property="og:site_name" content="AUA & Associates">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="geo.region" content="IN-HR">
+<meta name="geo.region" content="IN-HR, IN-UP, IN-DL">
 <meta name="geo.placename" content="Panchkula, Haryana">
 
 <!-- SCHEMA: Service + FAQPage -->
@@ -49,7 +57,7 @@
           "addressCountry": "IN"
         }
       },
-      "areaServed": ["Panchkula","Chandigarh","Mohali","Zirakpur","Ambala"],
+      "areaServed": ["Panchkula","Chandigarh","Mohali","Zirakpur","Ambala","Bareilly","Pilibhit","Shahjahanpur","Rampur","Delhi","Noida","Gurugram","Faridabad","Ghaziabad"],
       "offers": {
         "@type": "Offer",
         "name": "Virtual CFO Retainer",
@@ -106,13 +114,20 @@
 <body>
 <nav class="nav-primary" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="logo"><img src="ca-india-logo.jpg" alt="CA India" class="ca-logo-img"><div class="logo-text"><span class="logo-main">A U A & Associates</span><span class="logo-sub">Chartered Accountants</span></div></a>
-    <button class="nav-hamburger hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a href="index.html" class="logo">
+      <img src="ca-india-logo.jpg" alt="CA India Logo" class="ca-logo-img">
+      <div class="logo-text"><span class="logo-main">A U A &amp; Associates</span><span class="logo-sub">Chartered Accountants</span></div>
+    </a>
+    <button class="nav-hamburger hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links nav-menu" id="navLinks">
-      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
-      <li class="dropdown"><a href="services.html" class="active">Services ▾</a><ul class="dropdown-menu"><li><a href="gst-tax.html">GST & Tax Filing</a></li><li><a href="audit.html">Audit & Assurance</a></li><li><a href="company-registration.html">Company Registration</a></li><li><a href="financial-advisory.html">Financial Advisory</a></li><li><a href="virtual-cfo.html">Virtual CFO</a></li></ul></li>
-      <li><a href="team.html">Team</a></li><li><a href="offices.html">Offices</a></li><li><a href="contact.html">Contact</a></li>
-      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown"><a href="services.html" class="active">Services ▾</a><ul class="dropdown-menu"><li><a href="gst-tax.html">GST &amp; Tax Filing</a></li><li><a href="audit.html">Audit &amp; Assurance</a></li><li><a href="company-registration.html">Company Registration</a></li><li><a href="financial-advisory.html">Financial Advisory</a></li><li><a href="virtual-cfo.html">Virtual CFO</a></li></ul></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="offices.html">Offices</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -210,30 +225,73 @@
 </section>
 
 <footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-brand"><div class="logo"><img src="ca-india-logo.jpg" alt="CA India" class="ca-logo-img"><div class="logo-text"><span class="logo-main">A U A & Associates</span><span class="logo-sub">Chartered Accountants</span></div></div><p>CA firm serving Panchkula, Chandigarh & Mohali.</p><div class="footer-contact-items">        <span>📍 GHS 111, A-605, Sector 20, Panchkula, Haryana 134117</span>
-        <span>📍 Pilibhit Bypass, Phoenix United Mall, Bareilly, UP 243006</span>
-        <span>📞 <a href="tel:+916283153211">+91 6283 153 211</a> (Chandigarh)</span>
-        <span>📞 <a href="tel:+918938825555">+91 8938 825 555</a> (Bareilly)</span>
-        <span>✉️ <a href="/cdn-cgi/l/email-protection#dcbda9bdbdb2b8bdafafb3bfb5bda8b9afa8aeb5bfb5a8a59cbbb1bdb5b0f2bfb3b1"><span class="__cf_email__" data-cfemail="73120612121d171200001c101a1207160007011a101a070a33141e121a1f5d101c1e">[email&#160;protected]</span></a></span></a></span></div></div>
-    <div class="footer-links"><h4>Services</h4><ul><li><a href="gst-tax.html">GST & Tax Filing</a></li><li><a href="audit.html">Audit & Assurance</a></li><li><a href="company-registration.html">Company Registration</a></li><li><a href="financial-advisory.html">Financial Advisory</a></li><li><a href="virtual-cfo.html">Virtual CFO</a></li></ul></div>
-    <div class="footer-links"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="team.html">Our Team</a></li><li><a href="offices.html">Offices</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer-links"><h4>CA in Tricity</h4><ul><li><a href="gst-tax.html">CA in Chandigarh</a></li><li><a href="gst-tax.html">CA in Panchkula</a></li><li><a href="gst-tax.html">CA in Mohali</a></li><li><a href="virtual-cfo.html">Virtual CFO Tricity</a></li></ul>
-  <!-- WhatsApp Floating Button -->
+  <div class="container">
+    <div class="footer-offices">
+      <div class="footer-office">
+        <div class="fo-badge">Chandigarh Tricity Office</div>
+        <h4>AUA &amp; Associates &mdash; Panchkula</h4>
+        <div class="fo-detail"><span class="fo-icon">&#128205;</span><span>GHS 111, A-605, Sector 20, Panchkula, Haryana 134117</span></div>
+        <div class="fo-detail"><span class="fo-icon">&#128222;</span><a href="tel:+916283153211">+91 62831 53211</a></div>
+        <div class="fo-detail"><span class="fo-icon">&#9993;&#65039;</span><a href="mailto:auaandassociatestricity@gmail.com">auaandassociatestricity@gmail.com</a></div>
+        <div class="fo-detail"><span class="fo-icon">&#128336;</span><span>Mon&ndash;Sat: 9:30 AM &ndash; 6:30 PM</span></div>
+      </div>
+      <div class="footer-office">
+        <div class="fo-badge">Bareilly UP Office</div>
+        <h4>AUA &amp; Associates &mdash; Bareilly</h4>
+        <div class="fo-detail"><span class="fo-icon">&#128205;</span><span>Pilibhit Bypass, Phoenix United Mall, Bareilly, UP 243006</span></div>
+        <div class="fo-detail"><span class="fo-icon">&#128222;</span><a href="tel:+918938825555">+91 89388 25555</a></div>
+        <div class="fo-detail"><span class="fo-icon">&#9993;&#65039;</span><a href="mailto:auaandassociates.up@gmail.com">auaandassociates.up@gmail.com</a></div>
+        <div class="fo-detail"><span class="fo-icon">&#128336;</span><span>Mon&ndash;Sat: 9:30 AM &ndash; 6:30 PM</span></div>
+      </div>
+      <div class="footer-office">
+        <div class="fo-badge fo-badge--soon">Delhi NCR — Opening Soon</div>
+        <h4>AUA &amp; Associates &mdash; Delhi NCR</h4>
+        <div class="fo-detail"><span class="fo-icon">&#128205;</span><span>Delhi NCR, India (Office Opening Soon)</span></div>
+        <div class="fo-detail"><span class="fo-icon">&#128222;</span><a href="tel:+916283153211">+91 62831 53211</a> (Enquiries)</div>
+        <div class="fo-detail"><span class="fo-icon">&#9993;&#65039;</span><a href="mailto:auaandassociatestricity@gmail.com">auaandassociatestricity@gmail.com</a></div>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="ca-india-logo.jpg" alt="CA India" class="ca-logo-img">
+          <div class="logo-text"><span class="logo-main">A U A &amp; Associates</span><span class="logo-sub">Chartered Accountants</span></div>
+        </div>
+        <p>ICAI-registered CA firm serving Chandigarh Tricity, Bareilly UP &amp; Delhi NCR with integrity and expertise.</p>
+      </div>
+      <div class="footer-links"><h4>Services</h4><ul>
+        <li><a href="gst-tax.html">GST &amp; Tax Filing</a></li>
+        <li><a href="audit.html">Audit &amp; Assurance</a></li>
+        <li><a href="company-registration.html">Company Registration</a></li>
+        <li><a href="financial-advisory.html">Financial Advisory</a></li>
+        <li><a href="virtual-cfo.html">Virtual CFO</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Company</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="offices.html">Offices</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Our Locations</h4><ul>
+        <li><a href="ca-in-chandigarh-tricity.html">CA in Chandigarh Tricity</a></li>
+        <li><a href="ca-in-bareilly-up.html">CA in Bareilly UP</a></li>
+        <li><a href="ca-in-delhi-ncr.html">CA in Delhi NCR</a></li>
+        <li><a href="virtual-cfo.html">Virtual CFO Services</a></li>
+        <li><a href="gst-tax.html">GST Consultant</a></li>
+      </ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 AUA &amp; Associates. All rights reserved. | <a href="https://auaandassociates.co.in">auaandassociates.co.in</a> | ICAI Registered | Panchkula &bull; Bareilly &bull; Delhi NCR</p>
+  </div>
   <a id="whatsapp-float" href="https://wa.me/916283153211?text=Hello%20AUA%20%26%20Associates%2C%20I%20need%20CA%20services." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 5.98L0 24l6.18-1.62A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52zM12 22c-1.85 0-3.66-.5-5.24-1.44l-.37-.22-3.87 1.02 1.04-3.78-.24-.39A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.94 9.94 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.4c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15s-.78.97-.96 1.17c-.18.2-.35.22-.65.07a8.16 8.16 0 0 1-2.4-1.48 9.04 9.04 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51l-.58-.01c-.2 0-.52.07-.79.37s-1.03 1.01-1.03 2.46 1.06 2.86 1.2 3.06c.15.2 2.08 3.18 5.04 4.46.7.3 1.25.49 1.68.62.7.22 1.34.19 1.85.12.56-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
   </a>
-  <!-- Back to Top -->
   <button id="back-to-top" aria-label="Back to top">&#8679;</button>
-  <!-- Mobile Bottom Bar -->
   <div id="mobile-call-bar">
-    <a href="tel:+916283153211" class="mcb-btn mcb-call">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Call Now
-    </a>
-    <a href="https://wa.me/916283153211?text=Hello%20AUA%20%26%20Associates%2C%20I%20need%20CA%20services." target="_blank" rel="noopener" class="mcb-btn mcb-wa">
-      <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1C7.716 1 1 7.716 1 16c0 2.628.687 5.095 1.886 7.232L1 31l8.013-2.1A14.94 14.94 0 0016 31c8.284 0 15-6.716 15-15S24.284 1 16 1zm7.5 21.07c-.31.872-1.54 1.596-2.52 1.806-.672.142-1.55.255-4.506-1.012-3.784-1.61-6.226-5.45-6.415-5.702-.182-.25-1.53-2.035-1.53-3.882 0-1.847.966-2.753 1.308-3.13.31-.34.677-.425.903-.425l.65.012c.208.01.488-.079.764.583.285.68.97 2.35.055 2.67l-.32.125c-.3
-    </div>
+    <a href="tel:+916283153211" class="mcb-btn mcb-call"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Tricity</a>
+    <a href="tel:+918938825555" class="mcb-btn mcb-enquire"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Bareilly</a>
+    <a href="https://wa.me/916283153211?text=Hello%20AUA%20%26%20Associates%2C%20I%20need%20CA%20services." target="_blank" rel="noopener" class="mcb-btn mcb-wa"><svg width="14" height="14" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1C7.716 1 1 7.716 1 16c0 2.628.687 5.095 1.886 7.232L1 31l8.013-2.1A14.94 14.94 0 0016 31c8.284 0 15-6.716 15-15S24.284 1 16 1zm7.5 21.07c-.31.872-1.54 1.596-2.52 1.806-.672.142-1.55.255-4.506-1.012-3.784-1.61-6.226-5.45-6.415-5.702-.182-.25-1.53-2.035-1.53-3.882 0-1.847.966-2.753 1.308-3.13.31-.34.677-.425.903-.425l.65.012c.208.01.488-.079.764.583.285.68.97 2.35.055 2.67l-.32.125c-.3-.128-.768-.307-1.41-.586-.64-.278-1.067-.462-1.208-.527-.14-.065-.27-.073-.38.073-.11.146-.448.54-.55.652-.1.112-.202.126-.376.042a4.74 4.74 0 01-1.404-.866 5.27 5.27 0 01-.97-1.205c-.1-.175-.01-.27.076-.35.076-.073.175-.204.263-.305.088-.1.117-.175.175-.292.058-.117.029-.219-.014-.305-.044-.087-.397-.954-.543-1.305-.14-.338-.285-.292-.397-.298l-.34-.006c-.117 0-.308.044-.462.219s-.602.59-.602 1.438.616 1.67.703 1.787c.087.117 1.215 1.856 2.943 2.604z"/></svg>WhatsApp</a>
   </div>
 </footer>
 <script src="main.js" defer></script>

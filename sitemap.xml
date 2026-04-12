@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://auaandassociates.co.in/</loc><lastmod>2025-07-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://auaandassociates.co.in/about.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://auaandassociates.co.in/services.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://auaandassociates.co.in/gst-tax.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://auaandassociates.co.in/audit.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://auaandassociates.co.in/company-registration.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://auaandassociates.co.in/financial-advisory.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://auaandassociates.co.in/virtual-cfo.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://auaandassociates.co.in/team.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://auaandassociates.co.in/offices.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://auaandassociates.co.in/contact.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://auaandassociates.co.in/ca-in-chandigarh-tricity.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://auaandassociates.co.in/ca-in-bareilly-up.html</loc><lastmod>2025-07-01</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+
+  <!-- Core Pages -->
+  <url><loc>https://auaandassociates.co.in/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://auaandassociates.co.in/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://auaandassociates.co.in/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/team.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://auaandassociates.co.in/offices.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://auaandassociates.co.in/contact.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Service Pages -->
+  <url><loc>https://auaandassociates.co.in/gst-tax.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/audit.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/company-registration.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/financial-advisory.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/virtual-cfo.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Location Pages (AEO / GEO / Local SEO) -->
+  <url><loc>https://auaandassociates.co.in/ca-in-chandigarh-tricity.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/ca-in-bareilly-up.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://auaandassociates.co.in/ca-in-delhi-ncr.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
 </urlset>
